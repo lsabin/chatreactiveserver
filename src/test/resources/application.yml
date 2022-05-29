@@ -1,0 +1,9 @@
+spring:
+  mongodb:
+    embedded:
+      version: 3.6.5
+  #spring:
+  #  data:
+  #    mongodb:
+  #      uri: mongodb://localhost:27017/chatroomstest
+  #      auto-index-creation: true
