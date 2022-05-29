@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @WebFluxTest(controllers = MessageController.class, excludeAutoConfiguration = ReactiveSecurityAutoConfiguration.class)
-public class MessageControllerTest {
+class MessageControllerTest {
 
     private static final String ROOM_ID = "some-room-id";
     private static final String MESSAGE_BODY = "some-message-body";

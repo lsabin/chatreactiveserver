@@ -3,7 +3,6 @@ package com.smart.chat.api;
 import com.smart.chat.api.mapper.HttpStatusMapper;
 import com.smart.chat.api.model.request.RoomRequest;
 import com.smart.chat.api.model.response.RoomResource;
-import com.smart.chat.persistence.model.RoomDocument;
 import com.smart.chat.service.RoomService;
 import com.smart.chat.service.model.SaveRoomResult;
 import org.springframework.beans.factory.annotation.Autowired;

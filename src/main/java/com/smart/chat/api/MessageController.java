@@ -1,6 +1,5 @@
 package com.smart.chat.api;
 
-import com.smart.chat.api.mapper.HttpStatusMapper;
 import com.smart.chat.api.model.request.MessageRequest;
 import com.smart.chat.api.model.response.PrivateMessageResource;
 import com.smart.chat.api.model.response.RoomMessageResource;
@@ -26,12 +25,10 @@ import reactor.core.publisher.Mono;
 public class MessageController {
 
     private final MessageService messageService;
-    private final HttpStatusMapper httpStatusMapper;
 
     @Autowired
-    public MessageController(MessageService messageService, HttpStatusMapper httpStatusMapper) {
+    public MessageController(MessageService messageService) {
         this.messageService = messageService;
-        this.httpStatusMapper = httpStatusMapper;
     }
 
     @GetMapping(path="{roomId}/subscribe", produces = MediaType.TEXT_EVENT_STREAM_VALUE)

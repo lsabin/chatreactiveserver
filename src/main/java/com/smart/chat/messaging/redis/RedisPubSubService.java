@@ -1,5 +1,6 @@
 package com.smart.chat.messaging.redis;
 
+import com.smart.chat.config.properties.PubSubConfigProperties;
 import com.smart.chat.messaging.model.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +21,20 @@ public class RedisPubSubService {
     private final ReactiveRedisTemplate<String, Message> reactiveTemplate;
     private final ReactiveRedisMessageListenerContainer redisMessageListenerContainer;
 
-    private final ChannelTopic channelTopic = new ChannelTopic("messages");
+    private final ChannelTopic channelTopic;
 
     @Autowired
-    public RedisPubSubService(ReactiveRedisTemplate<String, Message> reactiveTemplate, ReactiveRedisMessageListenerContainer redisMessageListenerContainer) {
+    public RedisPubSubService(ReactiveRedisTemplate<String, Message> reactiveTemplate, ReactiveRedisMessageListenerContainer redisMessageListenerContainer, PubSubConfigProperties configProperties, ChannelTopic channelTopic) {
         this.reactiveTemplate = reactiveTemplate;
         this.redisMessageListenerContainer = redisMessageListenerContainer;
+        this.channelTopic = channelTopic;
     }
 
     public Mono<Void> publishMessage(Message message) {
         message.setTimestamp(Instant.now().toEpochMilli());
         reactiveTemplate
                 .convertAndSend(channelTopic.getTopic(), message)
-                .subscribe(System.out::println);
+                .subscribe();
 
         return Mono.empty();
     }

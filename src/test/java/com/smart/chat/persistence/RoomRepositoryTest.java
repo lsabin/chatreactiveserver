@@ -16,7 +16,7 @@ import reactor.test.StepVerifier;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataMongoTest
-public class RoomRepositoryTest {
+class RoomRepositoryTest {
 
     private static final String ROOM_ID_1 = "room-id-1";
     private static final String ROOM_ID_2 = "room-id-2";
@@ -36,7 +36,7 @@ public class RoomRepositoryTest {
 
     @Test
     @DisplayName("When rooms exist, then find result has the expected rooms")
-    public void findAllExistingRooms() {
+    void findAllExistingRooms() {
         Flux<RoomDocument> rooms = roomRepository.findAll();
 
         StepVerifier
